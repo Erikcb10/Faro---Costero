@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Faro Costero 3D</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #333; /* Color de fondo por si acaso */
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+        #glCanvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            cursor: grab;
+            /* IMPORTANTE: Asegurar que el canvas esté al fondo */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; 
+        }
+        #glCanvas:active {
+            cursor: grabbing;
+        }
+
+        /* HUD y Botón por encima del canvas */
+        #hud-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(3, 7, 18, 0.75);
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            pointer-events: none;
+            color: #d1d8e0;
+            z-index: 10;
+        }
+        #hud-overlay h1 {
+            margin: 0 0 8px 0;
+            font-size: 15px;
+            letter-spacing: 1px;
+            color: #4da6ff;
+            text-transform: uppercase;
+        }
+        #hud-overlay p {
+            margin: 4px 0;
+            font-size: 12px;
+            color: #8fa3bf;
+        }
+        #hud-overlay .key {
+            display: inline-block;
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid #334155;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        #dayNightBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            background: rgba(3, 7, 18, 0.85);
+            color: #f8fafc;
+            border: 2px solid #4da6ff;
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.25s ease;
+            z-index: 10;
+        }
+        #dayNightBtn:hover {
+            background: #4da6ff;
+            color: #0b1220;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="glCanvas"></canvas>
+    <button id="dayNightBtn">🌙 Noche</button>
+    <div id="hud-overlay">
+        <h1>Simulación de Faro Costero</h1>
+        <p><span class="key">Clic Izq. + Arrastrar</span> Orbitar Cámara</p>
+        <p><span class="key">Rueda</span> Zoom In / Out</p>
+        <p><span class="key">Flechas</span> Navegación Fina</p>
+        <p><span class="key">R</span> Reiniciar Vista</p>
+        <p><span class="key">N</span> Cambiar Día / Noche</p>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
